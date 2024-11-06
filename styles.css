@@ -1,0 +1,43 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+graph {
+  position: relative;
+  width: 70vmin;
+  height: 100vmin;
+  background: #FBF3EC;
+  // filter: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cfilter%20id%3D%22filter-65tvuuk5ud8%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.8%22%20numOctaves%3D%224%22%2F%3E%3CfeDisplacementMap%20in%3D%22SourceGraphic%22%20scale%3D%222%22%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#filter-65tvuuk5ud8");
+}
+
+graph::after {
+  z-index: 1;
+  content: "'CIRCUS'";
+  position: absolute;
+  bottom: 2vmin;
+  left: 3.2vmin;
+  font-size: 1.7vmin;
+  font-family: "Raleway", serif;
+  font-weight: 900;
+}
+
+graph > svg {
+  position: absolute;
+  bottom: 2.4vmin;
+  right: 3.2vmin;
+  height: 1.4vmin;
+}
+
+css-doodle {
+  position: relative;
+  z-index: 2;
+}
