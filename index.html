@@ -1,0 +1,1217 @@
+<style>
+  css-doodle {
+    --rule: (
+      :doodle {
+        @grid: 120x1 / 70vmin 100vmin;
+        overflow: visible;
+        contain: initial;
+        --color-1: #eb4f02;
+        --color-2: #f8a501;
+        --color-3: #006ebb;
+        --color-4: #f8a9ba;
+        --color-5: #009b6b;
+        --color-6: #000;
+        --color-7: #fff;
+      }
+      :container {
+        padding: 3vmin;
+      }
+
+      position: absolute;
+      --duration: 5s;
+      animation-duration: @var(--duration);
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+
+      @keyframes rotation {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+      @keyframes rotation-reverse {
+        to {
+          transform: rotate(-1turn);
+        }
+      }
+
+      @keyframes toTop50 {
+        to {
+          transform: translate3d(0, -50%, 0);
+        }
+      }
+
+      @keyframes toLeft50 {
+        to {
+          transform: translate3d(-50%, 0, 0);
+        }
+      }
+
+      @keyframes toLeft {
+        to {
+          transform: translate3d(-100%, 0, 0);
+        }
+      }
+
+      ::before, ::after {
+        content: "";
+        position: inherit;
+        animation-duration: 10s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-fill-mode: both;
+      }
+
+      @nth(1) {
+        top: 4vmin;
+        left: 4vmin;
+        @size: 2.7vmin;
+        transform: rotate(45deg);
+        background: @var(--color-1);
+
+        ::before, ::after {
+          @size: inherit;
+          background: inherit;
+          border-radius: 100%;
+          @place: @pn(0 50%, 50% 0%);
+        }
+      }
+
+      @nth(2) {
+        z-index: 1;
+        top: 5.9vmin;
+        left: 5.6vmin;
+        @size: 26.1vmin;
+        background: @var(--color-6);
+        border-radius: 50% 0 50% 0;
+        ::before, ::after {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: inherit;
+          @place: @pn(0 100%, 100% 0%);
+        }
+      }
+
+      @keyframes nth3 {
+        50% {
+          transform: translate3d(0, -3vmin, 0) rotate(-35deg) scaleY(0.27);
+        }
+      }
+
+      @nth(3) {
+        animation-name: nth3;
+        animation-duration: calc(@var(--duration));
+        z-index: 2;
+        top: 1.6vmin;
+        left: 1.2vmin;
+        @size: 17.4vmin;
+        transform: rotate(-45deg) scaleY(0.27);
+        background: radial-gradient(transparent 37%, @var(--color-1) calc(37% + 1px));
+        border-radius: 100%;
+
+        ::before {
+          @size: 100%;
+          transform: translate3d(0, -5%, 0);
+          background: radial-gradient(transparent 31%, @var(--color-3) calc(31% + 1px), @var(--color-3) 53%, transparent calc(53% + 1px));
+          border-radius: 100%;
+        }
+
+        ::after {
+          @size: 100%;
+          transform: translate3d(0, -16%, 0);
+          background: radial-gradient(transparent 37%, @var(--color-2) calc(37% + 1px));
+          border-radius: 100%;
+        }
+      }
+
+      @nth(4) {
+        z-index: 1;
+        top: 5.9vmin;
+        left: 5.6vmin;
+        @size: 26.1vmin;
+        border-radius: 50% 0 50% 0;
+        overflow: hidden;
+
+        ::before {
+          top: 48%;
+          left: 0;
+          width: 100%;
+          height: 49.2%;
+          background-image: @doodle(
+            @grid: 1x10 / 100% 100%;
+
+            :container {
+              overflow: hidden;
+            }
+
+            @keyframes nth4Bg {
+              to {
+                transform: translate3d(0, -104%, 0) scaleY(calc((6 + calc(@index - 1) * 6) / (6 + calc(@index + 0) * 6)));
+              }
+            }
+            animation: nth4Bg 1.5s linear both infinite;
+            ::after {
+              content: "";
+              position: absolute;
+              @size: 100%;
+              background: linear-gradient(180deg, @stripe(@var(--color-4) calc(6% + @index * 6%), transparent));
+              transform-origin: 50% 100%;
+            }
+            @nth(10) {
+              ::before {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 0;
+                @size: 100%;
+                background: linear-gradient(180deg, @stripe(@var(--color-4) calc(6% + @index * 6%), transparent));
+              }
+            }
+          );
+        }
+      }
+
+      @nth(5) {
+        z-index: 2;
+        top: 16vmin;
+        left: 16.1vmin;
+        @size: 4.7vmin;
+        background: @var(--color-6);
+        border-radius: 100%;
+      }
+
+      @nth(6, 7, 8, 9, 10, 11, 12, 13) {
+        animation-name: rotation;
+        animation-duration: calc(@var(--duration) * 5);
+        z-index: 1;
+        top: 16vmin;
+        left: 16.1vmin;
+        @size: 4.7vmin;
+
+        ::before {
+          bottom: 50%;
+          left: calc(50% - 10.4vmin / 2);
+          @size: 10.4vmin;
+          background: linear-gradient(90deg, @stripe(@var(--color-@pn(1, 3, 2, 7)), transparent));
+          border-radius: 100%;
+          transform: rotate(calc(45deg * (@index - 5)));
+          transform-origin: 50% 100%;
+        }
+      }
+
+      @nth(14) {
+        top: 18.3vmin;
+        left: 3.4vmin;
+        @size: 1vmin 11.4vmin;
+        background: linear-gradient(0deg, @stripe(@m9(@var(--color-@pn(1,2,3,4,5,6)))));
+      }
+
+      @nth(15) {
+        top: 2.9vmin;
+        left: 17.8vmin;
+        @size: 0.25vmin 1.4vmin;
+        background: @var(--color-6);
+        box-shadow: @m13(calc(0.67vmin * @n) 0 0 @var(--color-6));
+
+        ::before {
+          top: 0;
+          left: 9.7vmin;
+          @size: 2vmin 100%;
+          background: @var(--color-1); 
+        }
+      }
+
+      @nth(16, 17, 18, 19, 20, 21, 22, 23) {
+        top: calc(34.2vmin + 0.75vmin * (@index - 16));
+        left: 2.9vmin;
+        @size: 1.8vmin;
+        border: 0.2vmin solid @var(--color-@pn(1,2,3,4,5,6));
+        border-radius: 100%;
+      }
+
+      @nth(24, 25, 26, 27, 28, 29, 30) {
+        top: calc(45.1vmin + 1.4vmin * (@index - 24));
+        left: 3vmin;
+        @size: 1.5vmin;
+        @shape: triangle;
+        background: @var(--color-@pn(6, 4));
+      }
+      @nth(31) {
+        z-index: 1;
+        top: 43.5vmin;
+        left: 5.6vmin;
+        @size: 13vmin;
+        background: @var(--color-6);
+        border-radius: 0 100% 100% 0;
+
+        ::before, ::after {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: inherit;
+          @place: @pn(0 0%, 0% 100%);
+        }
+      }
+      @nth(32) {
+        top: 31.8vmin;
+        left: 5.55vmin;
+        @size: 12vmin;
+        border-style: solid;
+        border-width: 0.2vmin 0.4vmin 0.2vmin 0.2vmin;
+        border-color: transparent transparent transparent @var(--color-6);
+        overflow: hidden;
+        --size: 2.93vmin;
+
+        ::before,::after {
+          animation-name: toLeft;
+          @size: 100%;
+          background-image: linear-gradient(45deg, @var(--color-1) 25%, transparent 25%, transparent 75%, @var(--color-1) 75%, @var(--color-1)),linear-gradient(45deg, @var(--color-1) 25%, transparent 25%, transparent 75%, @var(--color-1) 75%, @var(--color-1));
+          background-size: calc(@var(--size) * 2) calc(@var(--size) * 2);
+          background-position: 0 0, @var(--size) @var(--size);
+        }
+
+        ::after {
+          top: 0;
+          left: 100%;
+        }
+      }
+      @nth(33, 34, 35) {
+        animation-name: rotation-reverse;
+        animation-duration: calc(@var(--duration) * 2);
+        z-index: 1;
+        top: 47.4vmin;
+        left: 9.6vmin;
+        @size: 5vmin;
+      }
+      @nth(33, 34) {
+        ::before, ::after {
+          @size: 120%;
+          background: @var(--color-@pn(4, 1, 5, 2));
+          border-radius: 100%;
+          @place: @pn(50% 0, 100% 50%, 50% 100%, 0 50%);
+        }
+      }
+
+      @nth(35) {
+        background: radial-gradient(@var(--color-6) 29.3%, @var(--color-7) calc(29.3% + 1px));
+        border-radius: 100%;
+      }
+
+      @nth(36, 37) {
+        top: @pn(58vmin, 59.9vmin);
+        left: 8vmin;
+        @size: 11.6vmin 2vmin;
+        transform: skew(@pn(±32)deg);
+        overflow: hidden;
+
+        ::before {
+          top: 0;
+          left: 0;
+          @size: 200% 100%;
+          background: linear-gradient(@pn(±90)deg, @stripe(@m12(@var(--color-@pd(1,2,3,4,5,6)))));
+          animation-name: toLeft50;
+        }
+      }
+
+      @nth(38) {
+        animation-name: rotation;
+        animation-duration: calc(@var(--duration) * 3);
+        top: 48vmin;
+        left: 19.8vmin;
+        @size: 10vmin;
+        background: repeating-conic-gradient(
+          @var(--color-2) 0 8deg,
+          @var(--color-6) 8deg 16deg,
+          @var(--color-3) 16deg 24deg,
+          @var(--color-1) 24deg 45deg
+        );
+        border-radius: 100%;
+      }
+
+      @nth(39) {
+        top: 65.5vmin;
+        left: 3.2vmin;
+        --size: 1.54vmin;
+        @size: @var(--size);
+        background: @var(--color-6);
+        border-radius: 100%;
+        box-shadow:
+          @m15(0 calc(@var(--size) * @n) 0 @var(--color-@pd(1,2,3,4,5,6))),
+          @m5(@var(--size) calc(@var(--size) * (11 + @n)) 0 @var(--color-@pn(1,2,3,4,5,6))),
+          @m5(calc(@var(--size) * 2) calc(@var(--size) * (12 + @n)) 0 @var(--color-@pd(1,2,3,4,5,6))),
+          @m4(calc(@var(--size) * 3) calc(@var(--size) * (13 + @n)) 0 @var(--color-@pd(1,2,3,4,5,6))),
+          @m3(calc(@var(--size) * 4) calc(@var(--size) * (14 + @n)) 0 @var(--color-@pd(1,2,3,4,5,6))),
+          @m2(calc(@var(--size) * 5) calc(@var(--size) * (15 + @n)) 0 @var(--color-@pd(1,2,3,4,5,6))),
+          @m1(calc(@var(--size) * 6) calc(@var(--size) * (16 + @n)) 0 @var(--color-@pd(1,2,3,4,5,6)));
+        ;
+      }
+
+      @nth(40) {
+        top: 92vmin;
+        left: 16vmin;
+        @size: 13.1vmin 0.12vmin;
+        color: @var(--color-6);
+        background: currentColor;
+        box-shadow: @m2(
+          0 calc(0.4vmin * @n) 0 currentColor
+        )
+      }
+
+      @nth(41, 42, 43, 44) {
+        top: 63.4vmin;
+        left: 5.6vmin;
+        @size: 26.1vmin;
+      }
+
+      @nth(41) {
+        background: @var(--color-6);
+        border-radius: 0 50% 0 50%;
+        ::before, ::after {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: inherit;
+          @place: @pn(0 0, 100% 100%);
+        }
+      }
+
+      @nth(42, 43, 44) {
+        overflow: hidden;
+        border-radius: 0 50% 0 50%;
+        ::before {
+          top: 0;
+          left: 0;
+          @size: 200% 100%;
+          animation-name: toLeft50;
+          animation-duration: calc(@var(--duration) * 3);
+        }
+      }
+
+      @nth(42) {
+        ::before {
+          background: @doodle(
+            color: @var(--color-4);
+            --size: 5vmin;
+            @grid: 18x1 / 100% 100%;
+            border-style: solid;
+            border-color: transparent transparent currentColor;
+            border-width: 0px @var(--size) 100vmin;
+          )
+        }
+      }
+
+      @nth(43) {
+        background: @var(--color-1);
+        clip-path: circle(34% at 50% 50%);
+
+        ::before {
+          background: @doodle(
+            color: @var(--color-7);
+            --size: 5vmin;
+            @grid: 18x1 / 100% 100%;
+            border-style: solid;
+            border-color: transparent transparent currentColor;
+            border-width: 0px @var(--size) 100vmin;
+          )
+        }
+      }
+
+      @nth(44) {
+        background: @var(--color-2);
+        clip-path: circle(17% at 50% 50%);
+        ::before {
+          background: @doodle(
+            color: @var(--color-6);
+            --size: 5vmin;
+            @grid: 18x1 / 100% 100%;
+            border-style: solid;
+            border-color: transparent transparent currentColor;
+            border-width: 0px @var(--size) 100vmin;
+          )
+        }
+      }
+
+      @nth(45) {
+        --size: 3.8vmin;
+        top: 65vmin;
+        left: 33.2vmin;
+        @size: @var(--size);
+        background: @var(--color-1);
+        border-radius: 100%;
+        box-shadow: @m10(0 calc(@var(--size) * @n / 2) 0 @var(--color-@pd(1,2,3,4,5,6)));
+      }
+
+      @nth(46) {
+        top: 91.5vmin;
+        left: 61.8vmin;
+        @size: 5.1vmin 1.5vmin;
+        background: @var(--color-6);
+        border-radius: 1vmin;
+        box-shadow: @m5(calc(-4.2vmin * @n) 0 0 @var(--color-@pd(1,2,3,4,5)));
+      }
+
+      @nth(47) {
+        animation-name: rotation-reverse;
+        animation-duration: calc(@var(--duration) * 3);
+        top: 77.3vmin;
+        left: 39.3vmin;
+        @size: 11.4vmin;
+        background: radial-gradient(
+          @var(--color-6) 16%,
+          @var(--color-7) calc(16% + 1px),
+          @var(--color-7) 32%,
+          @var(--color-1) calc(32% + 1px)
+        );
+        clip-path: @shape(
+          points: 32;
+          r: seq(1, .518);
+        )
+      }
+      @nth(48) {
+        top: 63.4vmin;
+        left: 38.4vmin;
+        @size: 26.1vmin;
+        color: @var(--color-6);
+      }
+
+      @nth(48) {
+        ::before, ::after {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: @pn(0.07vmin 100%, 0 0);
+        }
+      }
+
+      @nth(49) {
+        top: 63.4vmin;
+        left: 38.4vmin;
+        @size: calc(26.1vmin / 2) calc(26.1vmin / 2 + 3vmin);
+        overflow: hidden;
+        ::before, ::after {
+          top: 0;
+          left: 0;
+          @size: calc(26.1vmin / 2);
+          background: currentColor;
+          border-radius: 0 50% 50% 0;
+        }
+        ::after {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: 0 calc(100% - 3vmin);
+        }
+      }
+
+      @nth(50) {
+        top: calc(63.4vmin + 26.1vmin / 2 + 0.1vmin);
+        left: 38.4vmin;
+        @size: calc(26.1vmin / 2);
+        color: @var(--color-6);
+        border-left: 0.2vmin solid currentColor;
+        border-bottom: 0.2vmin solid currentColor;
+      }
+
+      @nth(51) {
+        top: 63.4vmin;
+        left: 38.4vmin;
+        @size: calc(26.1vmin / 2);
+        ::before, ::after {
+          animation-duration: calc(@var(--duration) * 4);
+          top: 0;
+          left: 0;
+          @size: calc(26.1vmin / 2);
+          background-size: 100% 70%, 70% 100%;
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          border-radius: 0 50% 50% 0;
+        }
+        ::before {
+          animation-name: rotation;
+          background-image: @m2(linear-gradient(@pn(90, 0)deg, @stripe(transparent, @var(--color-@pn(1,2)) 12%, transparent)));
+        }
+        ::after {
+          animation-name: rotation-reverse;
+          transform: rotate(45deg);
+          background-image: @m2(linear-gradient(@pn(90, 0)deg, @stripe(transparent, @var(--color-@pn(3,4)) 12%, transparent)));
+        }
+      }
+
+      @nth(52) {
+        top: 58vmin;
+        left: 39.5vmin;
+        @size: 4.3vmin;
+
+        ::before {
+          @place: 50% 100%;
+          @size: 0.3vmin 100%;
+          background: @var(--color-6);
+        }
+
+        ::after {
+          animation-name: rotation-reverse;
+          @size: 100%;
+          border-radius: 100%;
+          background: @m12(linear-gradient(calc(360deg * @n / 12 / 2), @stripe(transparent, @var(--color-@pd(1,2,3,4,5,6)) 0.2vmin, transparent)));
+        }
+      }
+
+      @nth(53) {
+        top: 33.7vmin;
+        left: calc(5.6vmin + 26.1vmin / 2);
+        @size: calc(26.1vmin / 2) calc(26.1vmin / 2 + 3vmin);
+        color: @var(--color-6);
+        overflow: hidden;
+
+        ::before {
+          top: 0;
+          right: 0;
+          @size: calc(26.1vmin / 2);
+          background: currentColor;
+          border-radius: 50% 0 0 50%;
+        }
+
+        ::after {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: 100% calc(100% - 3vmin);
+        }
+      }
+
+      @nth(54) {
+        top: 33.7vmin;
+        left: calc(5.6vmin + 26.1vmin / 2);
+        @size: calc(26.1vmin / 2) 29.7vmin;
+        color: @var(--color-6);
+        border-right: 0.2vmin solid transparent;
+
+        ::before, ::after {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: @pn(100%, calc(100% + 0.1vmin)) @pn(0, 100%);
+        }
+      }
+
+      @keyframes nth55 {
+        0%, 100% {
+          transform: translate3d(2vmin, -1.3vmin, 0) rotate(0deg) scaleY(0.27);
+        }
+        50% {
+          transform: rotate(-13deg) scaleY(0.27);
+        }
+      }
+
+      @nth(55) {
+        animation-name: nth55;
+        top: 53.2vmin;
+        left: 20.4vmin;
+        @size: 17.4vmin;
+        background: radial-gradient(transparent 37%, @var(--color-1) calc(37% + 1px));
+        border-radius: 100%;
+
+        ::before {
+          @size: 100%;
+          transform: translate3d(0, -5%, 0);
+          background: radial-gradient(transparent 31%, @var(--color-3) calc(31% + 1px), @var(--color-3) 53%, transparent calc(53% + 1px));
+          border-radius: 100%;
+        }
+
+        ::after {
+          @size: 100%;
+          transform: translate3d(0, -16%, 0);
+          background: radial-gradient(transparent 37%, @var(--color-2) calc(37% + 1px));
+          border-radius: 100%;
+        }
+      }
+
+      @nth(56) {
+        top: 33.7vmin;
+        left: calc(5.6vmin + 26.1vmin / 2);
+        @size: calc(26.1vmin / 2) 27.5vmin;
+        color: @var(--color-6);
+        border-right: 0.2vmin solid currentColor;
+      }
+
+      @nth(57) {
+        top: 34.3vmin;
+        left: 19.2vmin;
+        @size: 12vmin;
+
+        ::after {
+          animation-name: rotation-reverse;
+          animation-duration: calc(@var(--duration) * 4);
+          @place: center center;
+          @size: 60%;
+          background: @var(--color-7);
+          clip-path: @shape(
+            points: 32;
+            r: seq(1, .35);
+          )
+        }
+
+        ::before {
+          animation-name: rotation;
+          animation-duration: calc(@var(--duration) * 4);
+          @size: 100%;
+          background: @var(--color-2);
+          clip-path: @shape(
+            points: 32;
+            r: seq(1, .4);
+          );
+        }
+      }
+
+      @nth(58) {
+        top: 35.3vmin;
+        left: 33.2vmin;
+        --clip: 1.8vmin;
+        @size: calc(@var(--clip) * 2) 20.7vmin;
+        clip-path: polygon(@var(--clip) 0%, calc(100% - @var(--clip)) 0%, 100% @var(--clip), 100% calc(100% - @var(--clip)), calc(100% - @var(--clip)) 100%, @var(--clip) 100%, 0% calc(100% - @var(--clip)), 0% @var(--clip));
+
+        ::before {
+          animation-name: toTop50;
+          animation-duration: calc(@var(--duration) * 4);
+          top: 0;
+          left: 0;
+          @size: 100% 200%;
+          background-image: @m2(linear-gradient(0, @stripe(@m24(@var(--color-@pd(1,2,3,4,5,6))))));
+          background-size: 50% 100%;
+          background-repeat: no-repeat;
+          background-position: 0 0, 100% 0;
+        }
+      }
+
+      @nth(59) {
+        top: calc(63.4vmin + 26.1vmin / 2 + 0.1vmin);
+        left: calc(38.4vmin + 26.1vmin / 2 - 3vmin);
+        @size: calc(26.1vmin / 2 + 3vmin) calc(26.1vmin / 2);
+        color: @var(--color-6);
+        overflow: hidden;
+
+        ::before {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: 3vmin 100%;
+        }
+
+        ::after {
+          top: 0;
+          left: 3vmin;
+          @size: calc(26.1vmin / 2);
+          background: currentColor;
+          border-radius: 50% 0 50% 0;
+        }
+      }
+
+      @nth(60) {
+        top: calc(63.4vmin + 26.1vmin / 2 );
+        left: calc(38.4vmin + 26.1vmin / 2);
+        @size: calc(26.1vmin / 2);
+        background: @m5(radial-gradient(circle at @pn(20, 35, 50, 65, 80)% 50%, @var(--color-7) 0.9vmin, transparent calc(0.9vmin + 1px)));
+
+        ::before {
+          @size: 100%;
+          background-image: @m4(linear-gradient(@pn(45, -45, 135, -135)deg, @stripe(transparent 50%, @m2(@var(--color-@pd(1,2,3,4,5))))));
+          background-size: 36% 36%;
+          background-repeat: no-repeat;
+          background-position: @m4(@pn(22% 89%, 78% 89%, 22% 11%, 78% 11%));
+        }
+      }
+
+      @keyframes nth61 {
+        50% {
+          transform: translate3d(-1vmin, -1vmin, 0) rotate(35deg) scaleY(0.27);
+        }
+      }
+
+      @nth(61) {
+        animation-name: nth61;
+        animation-duration: calc(@var(--duration));
+        z-index: 1;
+        top: 69.8vmin;
+        left: 53.9vmin;
+        @size: 17.4vmin;
+        transform: rotate(54deg) scaleY(0.27);
+        background: radial-gradient(transparent 37%, @var(--color-1) calc(37% + 1px));
+        border-radius: 100%;
+
+        ::before {
+          @size: 100%;
+          transform: translate3d(0, -5%, 0);
+          background: radial-gradient(transparent 31%, @var(--color-3) calc(31% + 1px), @var(--color-3) 53%, transparent calc(53% + 1px));
+          border-radius: 100%;
+        }
+
+        ::after {
+          @size: 100%;
+          transform: translate3d(0, -16%, 0);
+          background: radial-gradient(transparent 37%, @var(--color-2) calc(37% + 1px));
+          border-radius: 100%;
+        }
+      }
+
+      @nth(62) {
+        z-index: 2;
+        top: calc(63.4vmin + 26.1vmin / 2 + 0.1vmin);
+        left: calc(38.4vmin + 26.1vmin / 2 - 0.1vmin);
+        @size: calc(26.1vmin / 2);
+
+        ::before {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: 100% 0%;
+        }
+      }
+
+      @nth(63) {
+        top: 62.1vmin;
+        left: 52.8vmin;
+        @size: 7.3vmin 1.3vmin;
+        color: @var(--color-6);
+        filter:
+          drop-shadow(0 2.8vmin 0 currentColor)
+          drop-shadow(0 5.6vmin 0 currentColor)
+          drop-shadow(2vmin 0 0 @var(--color-4))
+        ;
+
+        ::before {
+          @size: 100%;
+          background: currentColor;
+          box-shadow: 0 2.8vmin 0 currentColor;
+        }
+
+        ::after {
+          @size: 100%;
+          transform: translate3d(0, 1.4vmin, 0) rotate(-19deg) scaleX(1.13);
+          background: currentColor;
+        }
+      }
+
+      @nth(64) {
+        top: 62.1vmin;
+        left: 66.1vmin;
+        @size: 1vmin 11.8vmin;
+        background:
+          linear-gradient(0, @stripe(@var(--color-1) 1.5vmin, transparent)),
+          linear-gradient(90deg, @stripe(@var(--color-6), transparent, @var(--color-6) 0.2vmin));
+      }
+
+      @nth(65) {
+        top: 34vmin;
+        left: 38.4vmin;
+        @size: 26.1vmin;
+        --size: 2.71vmin;
+        background-image:
+          @m2(repeating-linear-gradient(@pn(0, 90)deg, transparent 0, transparent @var(--size), @var(--color-2) @var(--size), @var(--color-2) calc(@var(--size) + 0.2vmin))),
+          linear-gradient(@m2(@var(--color-6)));
+        border-radius: 50% 50% 0 50%;
+
+        ::before {
+          animation-name: rotation;
+          animation-duration: calc(@var(--duration) * 4);
+          @size: 72%;
+          background: conic-gradient(@stripe(@m4(@var(--color-@pn(1,7,3,7)))));
+          border-radius: 100%;
+        }
+
+        ::after {
+          animation-name: rotation-reverse;
+          animation-duration: calc(@var(--duration) * 4);
+          @size: 42%;
+          background: conic-gradient(@stripe(@m4(@var(--color-@pn(2,6)))));
+          border-radius: 100%;
+        }
+      }
+
+      @nth(66) {
+        top: 60.1vmin;
+        left: 38.35vmin;
+        @size: 26.1vmin 15vmin;
+        border-right: 0.2vmin solid @var(--color-6);
+
+        ::before {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: calc(100% + 0.1vmin) 0;
+        }
+      }
+
+      @nth(67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79) {
+        top: calc(23.2vmin + (@i - 67) * 2.65vmin);
+        left: 65.1vmin;
+        border-style: solid;
+        border-width: 1.3vmin 2.2vmin 1.3vmin 0;
+        border-color: transparent @var(--color-@pd(1,2,3,4,5,6)) transparent transparent;
+
+        ::before {
+          left: 0;
+          transform: scale(0.5);
+          transform-origin: 100% 50%;
+          border-style: solid;
+          border-width: 1.3vmin 2.2vmin 1.3vmin 0;
+          border-color: transparent @var(--color-@pd(1,2,3,4,5,6)) transparent transparent;
+        }
+      }
+
+      @nth(80,81,82,83,84,85,86,87) {
+        top: calc(7.6vmin + (@i - 80) * 1vmin);
+        left: 65.6vmin;
+        @size: 2vmin 1vmin;
+        clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        transform: rotate(@pn(0, 180)deg);
+        background: @var(--color-@pn(1,3,2,6,5,4,1,2));
+      }
+
+      @nth(88) {
+        top: 3vmin;
+        left: 43vmin;
+        color: @var(--color-6);
+
+        ::before {
+          content: "〰️";
+          font-size: 2.3vmin;
+          transform: rotate(180deg) scaleX(1.5);
+          text-shadow: @m5(calc(-2.3vmin * @n) 0 0 currentColor);
+        }
+      }
+
+      @nth(89) {
+        top: 2.2vmin;
+        left: 58vmin;
+        @size: 3vmin;
+        background: @var(--color-2);
+        border-radius: 100%;
+      }
+
+      @nth(90) {
+        top: 3.7vmin;
+        left: 43vmin;
+        color: @var(--color-6);
+        filter: drop-shadow(0 0.7vmin 0 currentColor);
+
+        ::before {
+          content: "〰️";
+          font-size: 2.3vmin;
+          transform: rotate(180deg) scaleX(1.5);
+          text-shadow: @m5(calc(-2.3vmin * @n) 0 0 currentColor);
+        }
+      }
+
+      @nth(91) {
+        top: 6vmin;
+        left: 54vmin;
+        @size: 8vmin;
+        background: @var(--color-3);
+        border-radius: 100%;
+
+        ::before, ::after {
+          @size: 100%;
+          transform: scaleX(@pn(0.8, 0.5));
+          background: @var(--color-@pn(4, 1));
+          border-radius: 100%;
+        }
+      }
+
+      @nth(92) {
+        top: 6vmin;
+        left: 54vmin;
+        @size: 8vmin;
+        background: @var(--color-7);
+        border-radius: 100%;
+        transform: scaleX(0.2);
+      }
+
+      @nth(93) {
+        top: calc(5.9vmin + 26.1vmin / 2);
+        left: calc(38.4vmin + 26.1vmin / 2);
+        @size: calc(26.1vmin / 2);
+        background: @var(--color-6);
+        border-radius: 50% 0 50% 50%;
+      }
+
+      @keyframes nth94 {
+        50% {
+          transform: translate3d(1vmin, 0, 0) rotate(30deg) scaleY(0.27);
+        }
+      }
+
+      @nth(94) {
+        animation-name: nth94;
+        top: 9.9vmin;
+        left: 52.2vmin;
+        @size: 17.4vmin;
+        transform: rotate(13deg) scaleY(0.27);
+        background: radial-gradient(transparent 37%, @var(--color-1) calc(37% + 1px));
+        border-radius: 100%;
+
+        ::before {
+          @size: 100%;
+          transform: translate3d(0, -5%, 0);
+          background: radial-gradient(transparent 31%, @var(--color-3) calc(31% + 1px), @var(--color-3) 53%, transparent calc(53% + 1px));
+          border-radius: 100%;
+        }
+
+        ::after {
+          @size: 100%;
+          transform: translate3d(0, -16%, 0);
+          background: radial-gradient(transparent 37%, @var(--color-2) calc(37% + 1px));
+          border-radius: 100%;
+        }
+      }
+
+      @nth(95) {
+        top: 5.9vmin;
+        left: calc(38.4vmin + 26.1vmin / 2);
+        @size: calc(26.1vmin / 2);
+        color: @var(--color-6);
+        border-right: 0.2vmin solid currentColor;
+
+        ::before {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: calc(100% + 0.1vmin) 0;
+        }
+      }
+
+      @nth(96) {
+        overflow: hidden;
+        top: 5.9vmin;
+        left: calc(38.4vmin + 26.1vmin / 2);
+        @size: calc(26.1vmin / 2);
+
+        ::before {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: 100% 100%;
+        }
+      }
+
+      @keyframes nth97 {
+        10%, 20% {
+          clip-path: ellipse(50% 0% at 50% 50%);
+        }
+        0%, 15%, 25%, 50%, 100% {
+          clip-path: ellipse(50% 30% at 50% 50%);
+        }
+      }
+
+      @nth(97) {
+        border-radius: 100% 0 100% 0;
+        transform: rotate(45deg);
+        top: 21.4vmin;
+        left: 53.7vmin;
+        @size: 8.5vmin;
+        background:
+          radial-gradient(@stripe(@var(--color-6) 18%, @var(--color-4) 18%, transparent)),
+          linear-gradient(@m2(@var(--color-7)));
+      }
+
+      @nth(98, 99, 100, 101, 102, 103, 104, 105, 106, 107) {
+        --size: 3vmin;
+        top: @pn(@m3(20.6vmin), @m3(calc(20.6vmin + @var(--size))), @m3(calc(20.6vmin + @var(--size) * 2)), calc(20.6vmin + @var(--size) * 3));
+        left: @pn(40.2vmin, calc(40.2vmin + @var(--size)), calc(40.2vmin + @var(--size) * 2), 40.2vmin, calc(40.2vmin + @var(--size)), calc(40.2vmin + @var(--size) * 2), 40.2vmin, calc(40.2vmin + @var(--size)), calc(40.2vmin + @var(--size) * 2), calc(40.2vmin + @var(--size)));
+        @size: @var(--size);
+        border-radius: 100%;
+        overflow: hidden;
+
+        ::before {
+          @size: 100%;
+          background: linear-gradient(0, @stripe(@m2(@var(--color-@pd(1,2,3,4,5,6)))));
+          animation-name: @p(rotation, rotation-reverse);
+        }
+      }
+
+      @nth(108) {
+        top: calc(5.9vmin + 26.1vmin / 2);
+        left: 38.4vmin;
+        width: calc(26.1vmin / 2);
+        height: calc(26.1vmin / 2 + 1.7vmin);
+        border-left: 0.2vmin solid @var(--color-6);
+
+        ::before {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: -0.1vmin 100%;
+        }
+      }
+
+      @nth(109) {
+        top: calc(5.9vmin + 26.1vmin / 2);
+        left: 38.4vmin;
+        @size: calc(26.1vmin / 2);
+        overflow: hidden;
+
+        ::before {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: 0 0;
+        }
+      }
+
+      @nth(110) {
+        top: 5.9vmin;
+        left: 38.4vmin;
+        @size: calc(26.1vmin / 2);
+        color: @var(--color-6);
+        background: @var(--color-6);
+        border-radius: 0 50% 50% 0;
+
+        ::before {
+          @size: 6vmin;
+          @shape: hypocycloid 4;
+          background: currentColor;
+          @place: 0 0;
+        }
+      }
+
+      @keyframes nth111 {
+        from {
+          transform: rotate(0) scale(3);
+        }
+        to {
+          transform: rotate(360deg) scale(3);
+        }
+      }
+
+      @keyframes nth112 {
+        from {
+          transform: rotate(360deg) scale(3);
+        }
+        to {
+          transform: rotate(0) scale(3);
+        }
+      }
+
+      @nth(111) {
+        top: 1.9vmin;
+        left: 39.7vmin;
+        @size: 5.2vmin 10.5vmin;
+        --unit: 8deg;
+        clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+        ::before {
+          @size: 100%;
+          background: repeating-conic-gradient(
+            @var(--color-1) 0 @var(--unit),
+            @var(--color-2) @var(--unit) calc(@var(--unit) * 2),
+            @var(--color-7) calc(@var(--unit) * 2) calc(@var(--unit) * 3),
+            @var(--color-2) calc(@var(--unit) * 3) calc(@var(--unit) * 4),
+            @var(--color-1) calc(@var(--unit) * 4) calc(@var(--unit) * 5)
+          );
+          animation-name: nth111;
+          animation-duration: calc(@var(--duration) * 5);
+        }
+      }
+
+      @nth(112) {
+        top: 1.9vmin;
+        left: calc(39.7vmin + 5.2vmin);
+        @size: 5.2vmin 10.5vmin;
+        --unit: 8deg;
+        ::before {
+          @size: 100%;
+          background: repeating-conic-gradient(
+            @var(--color-5) 0 @var(--unit),
+            @var(--color-7) @var(--unit) calc(@var(--unit) * 2),
+            @var(--color-2) calc(@var(--unit) * 2) calc(@var(--unit) * 3),
+            @var(--color-7) calc(@var(--unit) * 3) calc(@var(--unit) * 4),
+            @var(--color-5) calc(@var(--unit) * 4) calc(@var(--unit) * 5)
+          );
+          animation-name: nth112;
+          animation-duration: calc(@var(--duration) * 5);
+        }
+        clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+      }
+
+      @nth(113) {
+        top: calc(1.9vmin + 10.5vmin);
+        left: 39.7vmin;
+        @size: 5.2vmin 10.5vmin;
+        --unit: 8deg;
+        ::before {
+          @size: 100%;
+          background: repeating-conic-gradient(
+            @var(--color-3) 0 @var(--unit),
+            @var(--color-7) @var(--unit) calc(@var(--unit) * 2),
+            @var(--color-6) calc(@var(--unit) * 2) calc(@var(--unit) * 3),
+            @var(--color-7) calc(@var(--unit) * 3) calc(@var(--unit) * 4),
+            @var(--color-3) calc(@var(--unit) * 4) calc(@var(--unit) * 5)
+          );
+          animation-name: nth112;
+          animation-duration: calc(@var(--duration) * 5);
+        }
+        clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+        transform: rotate(180deg);
+      }
+
+      @nth(114) {
+        top: calc(1.9vmin + 10.5vmin);
+        left: calc(39.7vmin + 5.2vmin);
+        @size: 5.2vmin 10.5vmin;
+        --unit: 8deg;
+        ::before {
+          @size: 100%;
+          background: repeating-conic-gradient(
+            @var(--color-4) 0 @var(--unit),
+            @var(--color-6) @var(--unit) calc(@var(--unit) * 2),
+            @var(--color-1) calc(@var(--unit) * 2) calc(@var(--unit) * 3),
+            @var(--color-6) calc(@var(--unit) * 3) calc(@var(--unit) * 4),
+            @var(--color-4) calc(@var(--unit) * 4) calc(@var(--unit) * 5)
+          );
+          animation-name: nth111;
+          animation-duration: calc(@var(--duration) * 5);
+        }
+        clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+        transform: rotate(180deg);
+      }
+
+      @nth(115) {
+        top: 5.9vmin;
+        left: 31.6vmin;
+        @size: 6.8vmin 27.9vmin;
+        --unit: 0.77vmin;
+        background-image:
+          @m2(repeating-linear-gradient(90deg,@var(--color-3) 0,@var(--color-3) @var(--unit),transparent @var(--unit),transparent calc(@var(--unit) * 2))),
+          repeating-linear-gradient(90deg,transparent 0,transparent @var(--unit),@var(--color-3) @var(--unit),@var(--color-3) calc(@var(--unit) * 2))
+        ;
+        background-size: 100% 33.3%;
+        background-position: 0 0, 0 100%, 0 50%;
+        background-repeat: no-repeat;
+        border-radius: 3.3vmin;
+        overflow: hidden;
+      }
+    )
+  }
+</style>
+<graph>
+  <css-doodle use="var(--rule)"></css-doodle>
+  <svg viewBox="0 0 74 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M48.734 9.3007V0.780703H51.074V4.0207L53.666 0.780703H56.306L53.21 4.5967L56.522 9.3007H53.834L51.722 6.1687L51.074 6.8407V9.3007H48.734Z"
+      fill="black" />
+    <path
+      d="M63.0912 7.2607V9.3007H57.0192V0.780703H62.9832V2.8207H59.3592V4.0207H62.4552V5.9167H59.3592V7.2607H63.0912Z"
+      fill="black" />
+    <path
+      d="M33.418 9.3607C32.866 9.3607 32.338 9.2647 31.834 9.0727C31.338 8.8727 30.898 8.5847 30.514 8.2087C30.13 7.8247 29.826 7.3647 29.602 6.8287C29.386 6.2847 29.278 5.6647 29.278 4.9687C29.278 4.3687 29.39 3.8127 29.614 3.3007C29.838 2.7887 30.146 2.3407 30.538 1.9567C30.938 1.5647 31.402 1.2607 31.93 1.0447C32.458 0.828703 33.03 0.720703 33.646 0.720703C34.414 0.720703 35.11 0.888703 35.734 1.2247C36.358 1.5527 36.822 2.0047 37.126 2.5807L35.386 3.9127C35.218 3.5767 34.966 3.3087 34.63 3.1087C34.294 2.9007 33.938 2.7967 33.562 2.7967C33.282 2.7967 33.026 2.8527 32.794 2.9647C32.562 3.0767 32.358 3.2327 32.182 3.4327C32.014 3.6327 31.882 3.8727 31.786 4.1527C31.698 4.4247 31.654 4.7247 31.654 5.0527C31.654 5.3887 31.702 5.6927 31.798 5.9647C31.894 6.2367 32.026 6.4727 32.194 6.6727C32.37 6.8647 32.578 7.0167 32.818 7.1287C33.058 7.2327 33.326 7.2847 33.622 7.2847C33.998 7.2847 34.358 7.1927 34.702 7.0087C35.046 6.8167 35.358 6.5487 35.638 6.2047V8.4847C34.998 9.0687 34.258 9.3607 33.418 9.3607ZM35.518 6.4447H33.946V4.7647H37.45V9.3007H35.518V6.4447Z"
+      fill="black" />
+    <path
+      d="M10.734 9.3007V0.780703H14.646C15.062 0.780703 15.446 0.864703 15.798 1.0327C16.15 1.2007 16.454 1.4287 16.71 1.7167C16.966 1.9967 17.162 2.3127 17.298 2.6647C17.442 3.0167 17.514 3.3727 17.514 3.7327C17.514 4.0607 17.466 4.3767 17.37 4.6807C17.274 4.9847 17.134 5.2647 16.95 5.5207C16.766 5.7687 16.546 5.9847 16.29 6.1687L18.09 9.3007H15.522L14.022 6.6847H13.074V9.3007H10.734ZM13.074 4.6447H14.55C14.646 4.6447 14.738 4.6087 14.826 4.5367C14.914 4.4647 14.986 4.3607 15.042 4.2247C15.106 4.0887 15.138 3.9247 15.138 3.7327C15.138 3.5327 15.102 3.3687 15.03 3.2407C14.966 3.1047 14.882 3.0007 14.778 2.9287C14.682 2.8567 14.586 2.8207 14.49 2.8207H13.074V4.6447Z"
+      fill="black" />
+    <path d="M5.002 0.900313L9.33213 9.37531H0.671875L5.002 0.900313Z"
+      fill="#eb4f02" />
+    <path d="M24.002 0.900313L28.3321 9.37531H19.6719L24.002 0.900313Z"
+      fill="#f8a501" />
+    <path d="M43.002 0.900313L47.3321 9.37531H38.6719L43.002 0.900313Z"
+      fill="#006ebb" />
+    <path d="M69.002 9.30071L64.6719 0.825707H73.3321L69.002 9.30071Z"
+      fill="#f8a9ba" />
+  </svg>
+</graph>
